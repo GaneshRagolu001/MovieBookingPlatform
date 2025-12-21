@@ -96,12 +96,21 @@ export default function LandingPage() {
 
         {/* RIGHT MOCKUP AREA */}
         <motion.div
-          className="flex-1 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg md:h-[70vh] aspect-[3/4] rounded-3xl border border-white/10 bg-linear-to-br from-white/5 to-white/0 backdrop-blur flex items-center justify-center text-gray-400 text-sm sm:text-base"
+          className="flex-1 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg md:h-[70vh] aspect-[3/4] rounded-3xl border border-white/10 bg-linear-to-br from-white/5 to-white/0 backdrop-blur flex items-center justify-center text-gray-400 text-sm sm:text-base relative"
           initial={{ x: 80, opacity: 0, scale: 0.9 }}
           animate={{ x: 0, opacity: 1, scale: 1 }}
           transition={{ duration: 0.7 }}
         >
-          Mockup - movie posters / seat layout preview
+          <img
+            src="movies.jpg"
+            className="object-cover w-full h-full rounded-3xl absolute z-20 opacity-30"
+          ></img>
+          <div className="w-full h-full bg-gray-900 absolute z-10 opacity-15 rounded-3xl"></div>
+          <img
+            src="theater.jpg"
+            alt="front"
+            className="object-cover w-full h-full rounded-3xl absolute z-0"
+          />
         </motion.div>
       </div>
     </section>

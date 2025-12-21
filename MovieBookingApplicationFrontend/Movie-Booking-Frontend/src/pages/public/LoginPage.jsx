@@ -47,12 +47,12 @@ export default function LoginPage() {
   };
 
   return (
-    <div ref={glowRef} className="relative py-10">
+    <div ref={glowRef} className="relative py-10 w-7xl ">
       <div className="absolute inset-0 glow-bg bg-[radial-gradient(circle_at_top,rgba(229,9,20,0.25),transparent_60%)]" />
 
-      <div className="max-w-md mx-auto bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-md shadow-xl">
+      <div className="max-w-md mx-auto bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-md shadow-xl ">
         <motion.h1
-          className="text-2xl font-bold mb-6"
+          className="text-2xl font-bold mb-6 text-center"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
         >
@@ -61,9 +61,9 @@ export default function LoginPage() {
 
         <form className="space-y-4" onSubmit={handleSubmit}>
           <Input
-            label="name"
+            label="Username"
             type="text"
-            value={form.name}
+            value={form.username}
             onChange={(e) => setForm({ ...form, username: e.target.value })}
             placeholder="Enter your name"
           />

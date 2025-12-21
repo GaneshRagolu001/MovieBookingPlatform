@@ -34,7 +34,14 @@ export default function AppRouter() {
               path="/book/:showId/seats"
               element={<BookingSeatSelectionPage />}
             />
-            <Route path="/my-bookings" element={<MyBookingsPage />} />
+            <Route
+              path="/my-bookings"
+              element={
+                <ProtectedRoute>
+                  <MyBookingsPage />
+                </ProtectedRoute>
+              }
+            />
             <Route path="/checkout/:showId" element={<CheckoutPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />

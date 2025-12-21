@@ -42,6 +42,7 @@ export function AuthProvider({ children }) {
         }
       } catch (err) {
         console.error("Auth check failed", err);
+        logout();
       } finally {
         setLoading(false);
       }

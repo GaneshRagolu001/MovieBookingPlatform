@@ -46,9 +46,10 @@ public class ShowController {
         return ResponseEntity.ok(showService.updateShow(id,showDTO));
     }
 
-    @PutMapping("/deleteshow/{id}")
+    @DeleteMapping("/deleteshow/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> deleteShow(@PathVariable Long id){
+        System.out.println("delete hitted");
         showService.deleteShow(id);
         return ResponseEntity.ok().build();
     }

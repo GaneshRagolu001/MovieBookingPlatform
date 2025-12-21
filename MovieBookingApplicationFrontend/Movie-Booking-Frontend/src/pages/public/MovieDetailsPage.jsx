@@ -35,23 +35,38 @@ export default function MovieDetailsPage() {
   /* 1. Fetch movie & Generate Dates */
   useEffect(() => {
     if (!movieId) return;
+
     fetchMovieById(movieId).then((res) => {
       const movieData = res.data;
       setMovie(movieData);
 
-      // Generate 5 days starting from releaseDate
-      const start = new Date(movieData.releaseDate);
+      const today = new Date();
+      const release = new Date(movieData.releaseDate);
+
+      // 1. Determine the start date (Whichever is later: Today or Release Date)
+      // We set hours to 0 to ensure we compare just the calendar days
+      today.setHours(0, 0, 0, 0);
+      release.setHours(0, 0, 0, 0);
+
+      const startDate = release > today ? release : today;
+
+      // 2. Generate 5 days starting from that date
       const dates = [];
-      for (let i = 0; i < 5; i++) {
-        const nextDate = new Date(start);
-        nextDate.setDate(start.getDate() + i);
-        dates.push(nextDate.toISOString().split("T")[0]); // Format YYYY-MM-DD
+      for (let i = 1; i <= 5; i++) {
+        const nextDate = new Date(startDate);
+        nextDate.setDate(startDate.getDate() + i);
+
+        // Format as YYYY-MM-DD
+        const dateString = nextDate.toISOString().split("T")[0];
+        dates.push(dateString);
       }
+
       setAvailableDates(dates);
-      setSelectedDate(dates[0]); // Default to first date
+      if (dates.length > 0) {
+        setSelectedDate(dates[0]);
+      }
     });
   }, [movieId]);
-
   /* 2. Fetch theaters by location */
   useEffect(() => {
     if (!location) {
@@ -76,11 +91,15 @@ export default function MovieDetailsPage() {
     if (!selectedTheater || !selectedDate) return;
 
     // Assuming your API can take a date parameter
-    fetchShowsByMovie(movieId, selectedTheater.id, selectedDate)
+    fetchShowsByMovie(movieId, selectedTheater.theaterId, selectedDate)
       .then((res) => {
         // If your API doesn't filter by date, filter manually:
-        // const filtered = res.data.filter(s => s.showDate === selectedDate);
-        setShows(res.data);
+        const filtered = res.data.filter(
+          (s) =>
+            s.showTime.substr(0, 10) === selectedDate &&
+            s.theater.theaterId === selectedTheater.theaterId
+        );
+        setShows(filtered);
       })
       .catch(() => setShows([]));
   }, [selectedTheater, movieId, selectedDate]);
@@ -128,6 +147,7 @@ export default function MovieDetailsPage() {
           <p className="text-sm text-gray-300">
             {movie.genre} • {movie.language} • {movie.duration} mins
           </p>
+          <p className="overflow-hidden">{movie.description}</p>
         </div>
       </div>
 

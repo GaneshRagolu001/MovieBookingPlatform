@@ -48,12 +48,12 @@ MovieBookingPlatform/
 | Layer | Technology |
 |-------|------------|
 | Frontend | React, JavaScript, CSS |
-| Backend | Spring Boot / Node.js (or backend framework you used) |
+| Backend | Spring Boot|
 | API | REST APIs |
-| Database | MySQL / MongoDB (update with your chosen database) |
+| Database | MySQL |
 | Tools | Git, npm/yarn |
 
-*(Edit this section to reflect your exact stack.)*
+* 
 
 ---
 
@@ -95,7 +95,7 @@ The frontend will run typically at `http://localhost:3000`.
 3. Select available seats.
 4. Complete ticket booking flow.
 
-*(Update this section if you have user authentication or admin screens.)*
+ 
 
 ---
 
@@ -109,13 +109,7 @@ Contributions are welcome! To contribute:
 4. Push to your fork
 5. Open a Pull Request
 
----
-
-## 📄 License
-
-This project is open source under the **MIT License**.
-
----
+ 
 
 ## 📬 Contact
 

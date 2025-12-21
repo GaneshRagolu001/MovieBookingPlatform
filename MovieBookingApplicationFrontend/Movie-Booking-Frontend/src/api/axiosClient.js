@@ -19,4 +19,20 @@ axiosClient.interceptors.request.use((config) => {
   return config;
 });
 
+axiosClient.interceptors.response.use(
+  (response) => response, // If the request is successful, just return the response
+  (error) => {
+    // Check if error is 401 (Unauthorized) which usually means token expired
+    if (error.response && error.response.status === 401) {
+      // Clear local storage
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+
+      // Redirect to login or reload the page to reset the app state
+      window.location.href = "/login?expired=true";
+    }
+    return Promise.reject(error);
+  }
+);
+
 export default axiosClient;
