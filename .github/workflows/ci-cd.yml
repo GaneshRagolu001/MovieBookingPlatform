@@ -31,4 +31,4 @@ jobs:
       # ✅ Build Frontend Docker image
       - name: Build Frontend Docker Image
         run: |
-          docker build -t movie-frontend ./MovieBookingApplicationFrontend
+          docker build -t movie-frontend ./MOVIE-BOOKING-FRONTEND
