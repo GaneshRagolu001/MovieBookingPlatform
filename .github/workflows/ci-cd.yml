@@ -18,7 +18,10 @@ jobs:
           distribution: 'temurin'
 
       - name: Build Backend
-        run: mvn clean package
+        run: |
+          cd MovieBookingApplication
+          mvn clean package
+
 
       - name: Build Docker Images
         run: |
