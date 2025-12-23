@@ -3,8 +3,8 @@ services:
     image: mysql:8
     container_name: movie-mysql
     environment:
-      MYSQL_DATABASE: moviebookingdatabase
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     volumes:
       - mysql_data:/var/lib/mysql
     healthcheck:
@@ -18,10 +18,10 @@ services:
     ports:
       - "8080:8080"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/moviebookingdatabase
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/${MYSQL_DATABASE}
       SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
-      JWT_KEY: 3fKL7PlxDY5zPwH1uE8YjS1Yx3LPqQKzv8OV9eT5nFc=
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      JWT_KEY: ${JWT_KEY}
     depends_on:
       mysql:
         condition: service_healthy
