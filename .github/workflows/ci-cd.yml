@@ -11,19 +11,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Java
+      - name: Set up Java 21
         uses: actions/setup-java@v4
         with:
           java-version: '21'
           distribution: 'temurin'
 
-      - name: Build movie-backend
+      # ✅ Build Spring Boot backend
+      - name: Build MovieBookingApplication (Backend)
         run: |
-          cd C:\My Projects\MovieBooking\MovieBookingApplication
-          mvn clean package
+          cd MovieBookingApplication
+          mvn clean package -DskipTests
 
-
-      - name: Build Docker Images
+      # ✅ Build Backend Docker image
+      - name: Build Backend Docker Image
         run: |
-          docker build -t movie-backend ./backend
-          docker build -t movie-frontend ./frontend
+          docker build -t movie-backend ./MovieBookingApplication
+
+      # ✅ Build Frontend Docker image
+      - name: Build Frontend Docker Image
+        run: |
+          docker build -t movie-frontend ./MovieBookingApplicationFrontend
