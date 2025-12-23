@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 
-import TheaterCard from "../../components/theater/theaterCard";
+import TheaterCard from "../../components/theater/TheaterCard";
 import ShowTimeGroup from "../../components/theater/ShowTimeGroup";
 
 import { fetchMovieById } from "../../api/movieApi";
