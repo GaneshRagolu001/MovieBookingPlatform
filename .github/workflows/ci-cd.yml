@@ -19,7 +19,7 @@ jobs:
 
       - name: Build Backend
         run: |
-          cd MovieBookingApplication
+          cd C:\My Projects\MovieBooking\MovieBookingApplication
           mvn clean package
 
 
