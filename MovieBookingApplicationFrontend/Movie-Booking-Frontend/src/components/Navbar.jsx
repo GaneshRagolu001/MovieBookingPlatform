@@ -9,7 +9,7 @@ export default function Navbar() {
   const loggedInUser = JSON.parse(localStorage.getItem("user"));
   const { logout } = AuthUser();
 
-  const isAdmin = loggedInUser?.roles.find((item) => item == "ROLE_ADMIN");
+  const isAdmin = loggedInUser?.roles?.find((item) => item == "ROLE_ADMIN");
 
   return (
     <motion.nav
